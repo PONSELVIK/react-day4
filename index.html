@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    
+    <p> What is UseMemo Hook ?</p>
+    <p>
+        The React useMemo Hook returns a memoized value.Think of memoization as caching a value so that it does
+ not need to be recalculated.The useMemo Hook only runs when one of its dependencies update.This can improve 
+ performance. The useMemo and useCallback Hooks are similar. The main difference is that useMemo returns 
+ a memoized value and useCallback returns a memoized function. You can learn more about 
+ useCallback in the useCallback chapter.
+    </p>
+    <p>What is UseRef Hook ?</p>
+    <p>
+        The useRef Hook allows you to persist values between renders.It can be used to store a mutable
+         value that does not cause a re-render when updated.It can be used to access a DOM element directly.
+    </p>
+    <p>What is Context api</p>
+    <p>The Context API is a React structure that enables you to exchange unique details and assists in solving prop-drilling from all levels of your application. (or) Context provides a way to pass data 
+        through the component tree without having to pass props down manually at every level.
+
+        For example, authenticated users, locale preferences, UI themes need to be accessed in the application by many components.
+        
+        const {Provider, Consumer} = React.createContext(defaultValue)</p>
+    <p>What are React Life cycles Explain each one with Example</p>
+    <pre>
+        Mounting : When an instance of a component is being created and inserted into the DOM. Updating : When a component is being re-render as a result of changes to either its props or state Unmounting : When a component is being removed from the DOM Mounting :
+
+                constructor
+                static getDerivedStateFromProps
+                render
+                componentDidMount Updating :
+                static getDerivedStateFromProps
+                shouldComponentUpdate
+                render
+                getSnapshotBeforeUpdate
+                componentDidUpdate Unmounting :
+                componentWillUnmount
+    </pre>
+    <p>What is Props Drilling Concept ?What is State Uplifting ?</p>
+    <p>
+        Prop Drilling :
+It is the process by which you pass data from one component of the React Component tree to another by going throug
+h other components that do not need the data but only help in passing it around.
+<br>
+State Uplifting:
+When several components need to share the same changing data then it is recommended to lift the shared state up to their 
+closest common ancestor. That means if two child components share the same data from its parent,
+ then move the state to parent instead of maintaining local state in both of the child components.
+    </p>
+    <p>Difference between useEffect and useContext ?</p>
+    <pre>
+        useEffect :
+It allows us to implement all of the lifecycle hooks from within a single function API. // this will run when the component mounts and anytime the stateful data changes React.useEffect(() => { alert('Hey, Nads here!'); });
+
+// this will run, when the component is first initialized React.useEffect(() => { alert('Hey, Nads here!'); }, []);
+
+// this will run only when count state changes React.useEffect(() => { fetch('nads').then(() => setLoaded(true)); }, [count]);
+
+// this will run when the component is destroyed or before the component is removed from UI. React.useEffect(() => { alert('Hey, Nads here'); return () => alert('Goodbye Component'); });
+
+useContext :
+This hook allows us to work with React's Context API, which itself a mechanism to allow us to share data within it's component tree without passing through props. It basically removes prop-drilling const ans = { right: '✅', wrong: '❌' }
+
+  const AnsContext = createContext(ans);
+
+  function Exam(props) {
+      return (
+          // Any child component inside this component can access the value which is sent.
+          <AnsContext.Provider value={ans.right}>
+              <RightAns />
+          </AnsContext.Provider>
+      )
+  }
+
+  function RightAns() {
+      // it consumes value from the nearest parent provider.
+      const ans = React.useContext(AnsContext);
+      return <p>{ans}</p>
+      // previously we were required to wrap up inside the AnsContext.Consumer
+      // but this useContext hook, get rids that.
+  }
+    </pre>
+</body>
+</html>
